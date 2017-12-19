@@ -9,18 +9,14 @@ import android.widget.Spinner;
 
 public class UserInformation {
     public String Name;
-    public Spinner spinner1;
+    public String spinner1;
     public String phone;
-    public String city;
 
-    public UserInformation(String Name, Spinner spinner1, String phone, String city){
+    public UserInformation(String Name, String spinner1, String phone){
         this.Name = Name;
         this.spinner1 = spinner1;
         this.phone = phone;
-        this.city= city;
 
     }
-
-
 
 }

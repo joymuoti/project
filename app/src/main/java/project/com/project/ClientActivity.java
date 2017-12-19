@@ -36,15 +36,15 @@ private Button btnSave;
 
         btnSave.setOnClickListener(this);
     }
-    /**
+
     private void saveUserInformation(){
 
-        String Name = EditText.getText().toString().trim();
-        Spinner spinner1 = Spinner.getSpinner().toString().trim();
-        String phone = EditText.getText().toString().trim();
+        String name1 = Name.getText().toString().trim();
+        String spinner2 = spinner1.getSelectedItem().toString().trim();
+        String phone1 = phone.getText().toString().trim();
 
 
-        UserInformation userInformation = new UserInformation(Name, spinner1, phone);
+        UserInformation userInformation = new UserInformation(name1, spinner2, phone1);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -56,7 +56,6 @@ private Button btnSave;
 
         Toast.makeText(this, "Information Save...", Toast.LENGTH_LONG).show();
     }
-**/
 
 
 

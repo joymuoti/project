@@ -26,6 +26,8 @@
     <string name="city">City</string>
     <string name="name">Your name</string>
     <string name="payment">Your name</string>
+    <string name="payment1">Payment</string>
+    <string name="create_profile">Create Profile</string>
     <string name="cash">Cash Payments only.... </string>
 
     <string name="Link"> Are you a service provider? Create Profile </string>
@@ -34,8 +36,9 @@
     <string name="logout">Logout</string>
     <string name="title_activity_maps">Map</string>
 
-    <string name="default_info_title">default info title</string>
-    <string name="default_info_snippet">default info snippet</string>
+    <string name="default_info_title">Name</string>
+    <string name="default_info_snippet">Phone number</string>
+    <string name="default_occupation">occupation</string>
     <string name="pick_place">pick place</string>
 
 </resources>

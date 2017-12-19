@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:title="Item"
+    <item android:title="@string/create_profile"
+        android:id="@+id/create_profile"
         app:showAsAction="ifRoom"/>
-    <item android:title="Item"
+    <item android:title="@string/payment1"
+        android:id="@+id/payment1"
         app:showAsAction="ifRoom"/>
 </menu>

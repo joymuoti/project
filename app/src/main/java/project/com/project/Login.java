@@ -97,7 +97,7 @@ import java.util.TimerTask;
                         if (task.isSuccessful()) {
                             //start the profile activity
                             finish();
-                            startActivity(new Intent(getApplicationContext(), ClientActivity.class));
+                            startActivity(new Intent(getApplicationContext(), MapsActivity.class));
                         }
 
                     }

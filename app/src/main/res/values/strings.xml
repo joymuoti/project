@@ -26,7 +26,7 @@
     <string name="city">City</string>
     <string name="name">Your name</string>
     <string name="payment">Your name</string>
-    <string name="payment1">Payment/logout</string>
+    <string name="payment1">Payment</string>
     <string name="create_profile">Create Profile</string>
     <string name="cash">Cash Payments only.... </string>
 

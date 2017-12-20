@@ -26,6 +26,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="65dp"
         android:ems="20"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:hint="@string/cash" />
 
     <Button

@@ -1,6 +1,7 @@
 package project.com.project;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -33,8 +35,14 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.maps.android.clustering.ClusterManager;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class MapsActivity extends AppCompatActivity
@@ -134,8 +142,13 @@ public class MapsActivity extends AppCompatActivity
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.option_get_place) {
-            showCurrentPlace();
+        switch (item.getItemId()) {
+            case R.id.payment1:
+                startActivity(new Intent(MapsActivity.this, Payment.class));
+                return true;
+            case R.id.create_profile:
+                startActivity(new Intent(MapsActivity.this, ClientActivity.class));
+                return true;
         }
         return true;
     }
@@ -418,29 +431,39 @@ public class MapsActivity extends AppCompatActivity
     private void addItems() {
 
         // Set some lat/lng coordinates to start with.
-        double lat = -1.554 ;
-        double lng = 36.565;
+       // double lat = -1.554;
+       // double lng = 36.565;
 
         // Add ten cluster items in close proximity, for purposes of this example.
-        for (int i = 0; i < 10; i++) {
-            double offset = i / 60d;
-            lat = lat + offset;
-            lng = lng + offset;
 
-            LatLng latLng = new LatLng(lat, lng);
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        Toast.makeText(MapsActivity.this, "find", Toast.LENGTH_SHORT).show();
+        DatabaseReference databaseReference = firebaseDatabase.getReference();
 
-            mMap.addMarker(new MarkerOptions()
-                    .title(getString(R.string.default_info_title))
-                    .position(latLng)
-                    .snippet(getString(R.string.default_info_snippet)));
+        databaseReference.child("locations").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<project.com.project.Location> locations = new ArrayList<>();
 
-//            MyItem offsetItem = new MyItem(lat, lng);
-//            mClusterManager.addItem(offsetItem);
-//            MyItem infoWindowItem = new MyItem(lat, lng);
-//            mClusterManager.addItem(infoWindowItem);
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    project.com.project.Location location = dataSnapshot1.getValue(project.com.project.Location.class);
+                    locations.add(location);
+                    LatLng latLng = new LatLng(location.getLat(), location.getLon());
+                    Toast.makeText(MapsActivity.this, latLng.toString(), Toast.LENGTH_SHORT).show();
+                    mMap.addMarker(new MarkerOptions()
+                            .title(getString(R.string.default_info_title))
+                            .position(latLng)
+                            .snippet(getString(R.string.default_info_snippet)));
+                }
 
+            }
 
-        }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
+
 }
